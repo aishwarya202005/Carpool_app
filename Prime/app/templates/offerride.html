@@ -1,0 +1,112 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!--Offer Ride Page -->
+
+<div id="offerride" class="offerride">
+ 
+    <div class="offerride-details">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="section-headline text-center">
+            <h2>Offer a Ride</h2>
+        </div>
+      </div>
+      <center>
+      <section id="offerride">
+        <div class="container">
+          <div class="row">
+              
+            <div class="col-lg-12">
+              <form id="offerrideForm" action="/offerNext" method="post" name="offerrideform" >
+                <div class="row">
+                    <div class="well" style="margin-left:100px">
+                    <div class="col-md-4"></div> 
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      Start Place : <input class="form-control" name="source" type="text" placeholder="Leaving from.." required="required" data-validation-required-message="Please enter Start Place.">
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      End Place : <input class="form-control" name="destination" type="text" placeholder="Going to .." required="required" data-validation-required-message="Please enter End Place.">
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      Date : <input class="form-control" name="date" type="date" id="txtDate" placeholder="Date.." required="required" data-validation-required-message="Please enter Date.">
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                        Time : <input class="form-control" name="time" type="time"
+                        min="00:00" max="23:59" placeholder="Time.." required="required" data-validation-required-message="Please enter Time. ">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      Car Model : <input class="form-control" name="carmodel" type="text" placeholder="Car Model.." required="required" data-validation-required-message="Please enter Car Model.">
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      Car Number : <input class="form-control" name="carno" type="text" placeholder="Car No.." required="required" data-validation-required-message="Please enter Car Registration No.">
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      Cost : <input class="form-control" name="cost" type="number" placeholder="Cost.." >
+                      <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                      No of Seats in car: <input class="form-control" name="noofseats" type="number" placeholder="No of seats.." min="1" max="10" value="5" required="required" data-validation-required-message="Please enter No of Seats.">
+                      <p class="help-block text-danger"></p>
+                    </div>
+                  <center> <button id="submitButton" class="btn btn-success" type="submit">Submit</button> </center>  
+                 <br><br><br>
+                </div>
+                  <div class="clearfix"></div>
+                  <div class="col-md-12">
+                    <div id="success"></div>
+                    
+                  </div>
+                </div>
+                </div>
+              </form>
+            </div>
+          
+          </div>
+        </div>
+      </section>
+    </center>    
+
+    </div>
+</div>
+
+
+<script>
+function initialDateTime()
+{
+		var time=new Date();
+        var date=time.getDate();
+        var month=time.getMonth();
+        var year=time.getFullYear();
+		var hour=time.getHours();
+		var mins=time.getMinutes();
+		var secs=time.getSeconds();
+		//console.log(' '+hour+' '+mins+' '+secs);
+		//document.getElementById('time').innerHTML=' '+hour+' : '+mins+' : '+secs;
+        // document.getElementById('date').value=""+year+"-"+month+"-"+"date"
+        document.getElementById('time').value=""+hour+"-"+min
+}
+$(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    // alert(maxDate);
+    $('#txtDate').attr('min', maxDate);
+});
+</script>
+
+{% endblock %}

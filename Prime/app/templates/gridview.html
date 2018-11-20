@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+
+
+
+</br>
+<div class="container">
+
+  <div class="jumbotron">
+   
+<div class="container">
+  
+  <center><h2>Available Rides </h2></center>
+    
+ {% for book in driverdetails %}
+    <div class="well">
+     <center><a  href="{{ url_for('selride', values=book.BookingId)  }}">{{book.Source}} to {{book.Destination}}</a></center> 
+
+      <p style="text-align: center;">Date:{{book.Date}} &nbsp;&nbsp;   TIME: {{book.Time}}</p>
+      <p style="text-align: center;">CarModel: {{book.CarModel}}  &nbsp;&nbsp; CarNumber: {{book.CarNumber}}</p>
+      <p style="text-align: center;">Cost per km: {{book.Cost}}   &nbsp;&nbsp;Available Seats: {{book.Seats}}</p>
+    </div>  
+  {% endfor %}
+  
+
+  
+</div>
+
+
+      
+
+
+    
+</div>
+
+
+
+{% endblock %}

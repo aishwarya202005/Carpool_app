@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs nav-fill">
+               <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">Account</a></li>
+               <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages">Ride requests</a></li>
+               <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history">Your Rides</a></li>
+              
+              
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                <div class="content-section">
+                  <div class="media">
+                    <center><img class="img-circle" src="{{ image_file }}"style="width:10%;height: 10%;"></center>
+                    <div class="media-body">
+                      <h2 class="account-heading">{{ current_user.username }}</h2>
+                      <p class="text-secondary">{{ current_user.email }}</p>
+                    </div>
+                  </div>
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Account Info</legend>
+                            <div class="form-group">
+                                {{ form.username.label(class="form-control-label") }}
+
+                                {% if form.username.errors %}
+                                    {{ form.username(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.username.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.username(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+                                {% if form.email.errors %}
+                                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.email(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.picture.label() }}
+                                {{ form.picture(class="form-control-file") }}
+                                {% if form.picture.errors %}
+                                    {% for error in form.picture.errors %}
+                                        <span class="text-danger">{{ error }}</span><br>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </fieldset>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+                    </form>
+                </div>
+              <hr>
+
+             </div><!--/tab-pane-->
+
+             <div class="tab-pane" id="messages">
+
+                <h2>Request details:-</h2>
+    
+                    {% for req in all_req %}
+                   <div class="well">
+                   <p style="text-align: center;">User ID:{{req.Ruserid}} </p>
+                   <p style="text-align: center;">Booking ID: {{req.RBookingId}} </p>
+                   
+                   <center><a  href="{{ url_for('req_details', value1=req.Ruserid, value2=req.RBookingId )  }}">Click here to view user details & accept / reject..</a></center>
+                   </div>
+                   {% endfor %}
+
+               <hr>
+
+             </div><!--/tab-pane-->
+
+             <div class="tab-pane" id="history">
+
+                   <h2>History</h2>
+
+                   <ul class="nav nav-pills">
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming</a>
+                       
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#completed">Completed</a>
+                      </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane" id="upcoming">
+
+                          <h2>Upcoming Rides</h2>
+
+                        <center>  <h3>As Driver</h3></center>
+                        {% for driver in coming_driver %}
+                        <div class="well">
+                                <p style="text-align: center;"> Source : {{driver.Source}}</p>
+                                <p style="text-align: center;"> Destination : {{driver.Destination}}</p>
+
+                                <p style="text-align: center;">Date:{{driver.Date}} &nbsp;&nbsp;   TIME: {{driver.Time}}</p>
+                                <p style="text-align: center;">CarModel: {{driver.CarModel}}  &nbsp;&nbsp; CarNumber: {{driver.CarNumber}}</p>
+                                <p style="text-align: center;">Cost per km: {{driver.Cost}}   &nbsp;&nbsp;Available Seats: {{driver.Vac_seats}}</p>
+                             <center>  <a href="{{url_for('del_ride',value=driver.BookingId)}}" type="button" class="btn btn-danger">Delete Ride</a></center> 
+                            </div>
+                   {% endfor %}
+
+                   <center><h3>As Rider</h3></center>
+                   {% for rider in coming_rider %}
+                   <div class="well">
+                           <p style="text-align: center;"> Source : {{rider.Source}}</p>
+                           <p style="text-align: center;"> Destination : {{rider.Destination}}</p>
+
+                           <p style="text-align: center;">Date:{{rider.Date}} &nbsp;&nbsp;   TIME: {{rider.Time}}</p>
+                           <p style="text-align: center;">CarModel: {{rider.CarModel}}  &nbsp;&nbsp; CarNumber: {{rider.CarNumber}}</p>
+                           <p style="text-align: center;">Cost per km: {{rider.Cost}}   &nbsp;&nbsp;Available Seats: {{rider.Seats}}</p>
+                   </div>
+              {% endfor %}
+
+
+                          
+
+
+                          <hr>
+
+                        </div><!--/tab-pane-->
+
+                        <div class="tab-pane" id="completed">
+
+                          <h2>Completed Rides</h2>
+
+                          <center><h3>As Driver</h3></center>
+                          {% for driver in past_driver %}
+                          <div class="well">
+                                  <p style="text-align: center;"> Source : {{driver.Source}}</p>
+                                  <p style="text-align: center;"> Destination : {{driver.Destination}}</p>
+  
+                                  <p style="text-align: center;">Date:{{driver.Date}} &nbsp;&nbsp;   TIME: {{driver.Time}}</p>
+                                  <p style="text-align: center;">CarModel: {{driver.CarModel}}  &nbsp;&nbsp; CarNumber: {{driver.CarNumber}}</p>
+                                  <p style="text-align: center;">Cost per km: {{driver.Cost}}   &nbsp;&nbsp;Available Seats: {{driver.Vac_seats}}</p>
+                          </div>
+                     {% endfor %}
+  
+                     <center><h3>As Rider</h3></center>
+                     {% for rider in past_rider %}
+                     <div class="well">
+                             <p style="text-align: center;"> Source : {{rider.Source}}</p>
+                             <p style="text-align: center;"> Destination : {{rider.Destination}}</p>
+  
+                             <p style="text-align: center;">Date:{{rider.Date}} &nbsp;&nbsp;   TIME: {{rider.Time}}</p>
+                             <p style="text-align: center;">CarModel: {{rider.CarModel}}  &nbsp;&nbsp; CarNumber: {{rider.CarNumber}}</p>
+                             <p style="text-align: center;">Cost per km: {{rider.Cost}}   &nbsp;&nbsp;Available Seats: {{rider.Seats}}</p>
+                     </div>
+                {% endfor %}
+  
+
+                          <hr>
+
+                        </div><!--/tab-pane-->
+                    </div>
+
+               <hr>
+
+             </div><!--/tab-pane-->
+
+            
+        
+
+              </div><!--/tab-pane-->
+
+          </div><!--/tab-content-->
+{% endblock %}

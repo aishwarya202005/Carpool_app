@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+
+
+<div class="container">
+
+  <div class="jumbotron">
+   
+<div class="container">
+  </br></br>
+
+<style>
+  
+
+.panel1{
+   background-color: rgb(2,151,222);
+    color: rgb(1,0,125);
+    
+    height: 300px;
+     border-radius: 15px;
+/*    border: 2px solid #73AD21;*/
+    padding: 1px;
+}
+.beech{
+  width: 1100px;
+  margin: auto;
+}
+
+.panel2{
+   background-color: rgb(242,241,255);
+    color: rgb(221,110,125);
+    border: 2px solid rgb(121,110,125);
+height: 300px;
+     border-radius: 15px;
+/*    border: 2px solid #73AD21;*/
+    padding: 7px;
+}
+</style>
+<center><h2><b>You are booking 1 seat </h2></b></center>
+<div class="beech" >
+    <div class="panel1" style="width: 48%; font-size:20px; float: left; "><p><b>       
+ <u>   <p>
+<center><h4>Payment Details</h4></center>
+<br><br>
+ <div class="panel2" style="font-size:20px; width: 70%; margin-left: 80px; height: 60px;">
+    <p style="font-size: 15px; ">
+        Cash to pay the car owner for 1 seat ₹ {{selected_dri.Cost}}
+     </p>
+ </div>
+<br>
+ <center><a class="ready-btn" style="text-align: center; " 
+ href="{{ url_for('success_booking', values=selected_dri.BookingId)  }}">BOOK Ride</a></center>
+</p></u>
+     </p></b>
+ </div>
+    <div class="panel2" style="font-size:20px; width: 40%; margin-left: 560px;">
+  <center> <p style="font-size: 15px; ">
+<b><u><h4>RIDE SUMMARY</h4></b></u></br></br>
+                 DATE :{{selected_dri.Date}} </br>   
+                 TIME : {{selected_dri.Time}} <br>
+                 SOURCE : {{selected_dri.Source}}<br>
+                 DESTINATION : {{selected_dri.Destination}}<br>
+                 CarModel: {{selected_dri.CarModel}} </br>
+                 CarNumber: {{selected_dri.CarNumber}} 
+
+     </p></center> 
+ </div>
+</div></br>
+
+
+
+
+
+
+</div>
+
+
+      
+
+</div>
+    
+</div>
+
+<!--
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

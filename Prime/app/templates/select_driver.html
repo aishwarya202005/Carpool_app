@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block body %}
+</br></br></br></br>  
+<div class="container">
+  </br></br></br></br>
+
+<style>
+  
+
+.panel1{
+   background-color: rgb(242,241,255);
+    color: rgb(1,0,125);
+    border: 2px solid rgb(51,211,252);
+    height: 300px;
+     border-radius: 15px;
+/*    border: 2px solid #73AD21;*/
+    padding: 7px;
+}
+.beech{
+  width: 1100px;
+  margin: auto;
+}
+
+.panel2{
+   
+   background-color: rgb(2,151,222);
+    color: rgb(221,110,125);
+    border: 2px solid rgb(121,110,125);
+height: 300px;
+     border-radius: 15px;
+/*    border: 2px solid #73AD21;*/
+    padding: 7px;
+}
+</style>
+
+<div class="beech" >
+    <div class="panel1" style="width: 48%; font-size:20px; float: left; "><p><b> 
+
+      
+ <u>   <p>{{selected_dri.Source}} to {{selected_dri.Destination}}</p></u>
+
+<p style="text-align: center;">Date:{{selected_dri.Date}} &nbsp;&nbsp;   TIME: {{selected_dri.Time}}</p>
+<p style="text-align: center;">CarModel: {{selected_dri.CarModel}}  &nbsp;&nbsp; CarNumber: {{selected_dri.CarNumber}}</p>
+<p style="text-align: center;">Cost per km: {{selected_dri.Cost}}   &nbsp;&nbsp;Available Seats: {{selected_dri.Seats}}</p>
+
+  
+
+
+
+
+     </p></b>
+ </div>
+    <div class="panel2" style="font-size:20px; width: 40%; margin-left: 560px;">
+ </br></br>    <p style="font-size: 15px; ">
+Your booking will be approved automatically
+  </br></br></br></br>
+               <input type="checkbox" > I have read and accept the T&Cs and certify I am over 18 years old. </input> <br />
+
+ <a class="ready-btn" style="text-align: center; margin-left: 90px;" href="{{ url_for('req_ride', values=selected_dri.BookingId)  }}">Request Ride</a>
+     </p>
+ </div>
+</div></br>
+</div>    
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

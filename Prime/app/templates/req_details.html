@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="container">
+
+  <div class="jumbotron">
+        
+<div class="container">
+  </br></br></br></br>
+  <h2>Request details:-</h2>
+  <div class="well">
+      <p style="text-align: center;">User Name:{{userobj.name}} </p>
+      <p style="text-align: center;">gender: {{userobj.gender}} </p>
+      <p style="text-align: center;">phone no.:{{userobj.phoneNo}} </p>
+      <p style="text-align: center;">email: {{userobj.email}} </p>
+      <p style="text-align: center;">govt ID:{{userobj.govtid}} </p>
+
+<center><a class="btn btn-primary" href="{{ url_for('accept_req', value1=userobj.id, value2=b_id )  }}">Click here to accept</a>
+<a class="btn btn-danger" href="{{ url_for('delete_req', value1=userobj.id, value2=b_id )  }}">Click here to reject..</a></center>
+    </div>
+  
+</div>
+    
+</div>
+
+{% endblock %}

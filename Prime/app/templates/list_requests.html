@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="container">
+
+  <div class="jumbotron">
+   
+<div class="container">
+  </br></br></br></br>
+  <h2>Request details:-</h2>
+    
+ {% for req in all_req %}
+<div class="well">
+<p style="text-align: center;">User ID:{{req.Ruserid}} </p>
+<p style="text-align: center;">Booking ID: {{req.RBookingId}} </p>
+
+<a  href="{{ url_for('req_details', value1=req.Ruserid, value2=req.RBookingId )  }}">Click here to view user details & accept / reject..</a>
+</div>
+{% endfor %}
+  
+</div>
+    
+</div>
+
+{% endblock %}

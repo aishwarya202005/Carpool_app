@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+<br><br><br><br><br>
+    <div class="content-section">
+        <form method="POST" action="{{ url_for('confirm_otp_next',values=user_name)}}">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+               
+                <legend class="border-bottom mb-4">Enter OTP</legend>
+                <div class="form-group">
+                    <input type="text" name="otpp"></div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+            <!----input type="submit">submit-->
+        </form>
+    </div>
+{% endblock %}
